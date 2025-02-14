@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+    <title>Invitación a San Valentín</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            text-align: center;
+            font-family: 'Sacramento', cursive;
+        }
+        .container {
+            text-align: center;
+        }
+        #gifContainerImg {
+            width: 60%;
+            height: 60%;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            color: white;
+        }
+        #siBtn {
+            background-color: #009705;
+            border: 2px solid #FFC0CB;
+        }
+        #noBtn {
+            background-color: #FF5733;
+            border: 2px solid #FFC0CB;
+        }
+        #siBtn:hover {
+            background-color: #053a03;
+        }
+        #noBtn:hover {
+            background-color: #641e0d;
+        }
+        .bg-green {
+            background-color: #ffffff;
+        }
+        #messageContainer {
+            font-size: 30px;
+            color: #FF0000;
+            text-shadow: 2px 2px 4px #000;
+            animation: pulse 0.5s infinite alternate;
+        }
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="gifContainer">
+            <img id="gifContainerImg">
+        </div>
+        <div id="happyGifContainer" style="display: none;">
+            <img  style="width: 100%; height: 100%;">
+        </div>
+        <h1 id="question">¿Quieres ser mi San Valentín?</h1>
+        <div id="messageContainer" style="display: none;"></div>
+        <button id="siBtn">Sí</button>
+        <button id="noBtn">No</button>
+    </div>
+    <script>
+        document.getElementById('siBtn').addEventListener('click', function() {
+            document.getElementById('gifContainer').style.display = 'none';
+            document.getElementById('happyGifContainer').style.display = 'block';
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('siBtn').style.display = 'none';
+            document.getElementById('noBtn').style.display = 'none';
+            document.body.classList.add('bg-green');
+            document.getElementById('messageContainer').style.display = 'block';
+            document.getElementById('messageContainer').innerHTML = '¡Oh Siii! jajaja';
+        });
+
+        let noButtonState = 0;
+        document.getElementById('noBtn').addEventListener('click', function() {
+            const messages = [
+                '¡Oh no! ¿Estás segura?',
+                '¡¿Realmente estás segura?!',
+                '¿Eres positiva?',
+                'Di que sí por favor?',
+                'Solo piénsalo',
+                'Si dices que no estaré muy triste',
+                'Estaré muy triste',
+                'NO... ya di que sí',
+                'Anda Siiiiiiiiiiiiiiiiiiiiiiiiiii',
+                'Por favooooooor'
+            ];
+            if (noButtonState < messages.length) {
+                document.getElementById('noBtn').innerHTML = messages[noButtonState];
+                document.getElementById('siBtn').style.fontSize = (40 + noButtonState * 20) + 'px';
+                document.getElementById('siBtn').style.padding = (20 + noButtonState * 10) + 'px ' + (40 + noButtonState * 10) + 'px';
+                noButtonState++;
+            } else {
+                document.getElementById('noBtn').innerHTML = 'por favooooooor';
+                noButtonState = 0;
+            }
+        });
+    </script>
+</body>
+</html>
